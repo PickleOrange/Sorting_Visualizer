@@ -9,4 +9,4 @@ The Sudoku file contains code in python for a Sudoku solver. In order to complie
 
 ### `python3 GUI.py`
 
-
+The main project I done in c++ is a text editor and given that it's school work I don't want to upload it here.
