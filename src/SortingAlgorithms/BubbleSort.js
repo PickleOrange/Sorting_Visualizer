@@ -1,6 +1,9 @@
 export default function BubbleSort(array){
+    //shallow copy of the array for modification purposes
     let arr = array.slice(0);
+    //for keeping track of the animations 
     let animations = []
+    //bubble sort that stops when there are no more elements to sort
     while(true){
         let hasChanged = false;
         for (let i = 0; i < arr.length - 1; i++) {

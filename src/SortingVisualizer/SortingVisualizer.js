@@ -4,11 +4,10 @@ import InsertionSort from '../SortingAlgorithms/InsertionSort'
 import SelectionSort from '../SortingAlgorithms/SelectionSort'
 import BubbleSort from '../SortingAlgorithms/BubbleSort'
 import GetQuickSortAnimation from '../SortingAlgorithms/QuickSort'
-import MergeSort from '../SortingAlgorithms/MergeSort'
 
 
 const NORMAL_COLOR = '#900c3f';
-const CHANGED_COLOR = '#51ff00';
+const CHANGED_COLOR = '#eb34e5';
 const AFTER_CHANGE_COLOR = '#90EE90';
 
 var abort = false;
@@ -19,14 +18,19 @@ export default class SortingVisualizer extends React.Component{
         this.state = {
             arrayToSort: [],
             prevChanged: [],
-            numberOfItems: 150,
-            delay: 3
+            numberOfItems: 20,
+            delay: 3,
+            SortingInProcess: false,
+            Sorted: false
         };
     }
 
     componentDidMount(){
         this.resetArray();
     }
+
+
+    //logic to reset the array 
 
     resetArray(){
         const arrayToSort = [];
@@ -40,10 +44,16 @@ export default class SortingVisualizer extends React.Component{
     
     generateNewArray(){
         abort = true;
+        this.setState({ sortingInProgress: false });
+        this.setState({Sorted : false});
         this.resetArray();
     }
 
     async SortArray(algo){
+        if(this.state.Sorted){
+            return;
+        }
+        this.setState({ sortingInProgress: true });
         let sortedArrayAnim = algo(this.state.arrayToSort);
         let arrayToSort = this.state.arrayToSort;
         let prevChanged = this.state.prevChanged;
@@ -67,13 +77,18 @@ export default class SortingVisualizer extends React.Component{
                 prevChanged.push(arrayToSort.length + 1, arrayToSort.length + 1);
                 this.setState({prevChanged});
             }
-
+            this.setState({ sortingInProgress: false });
+            this.setState({Sorted : true});
             this.setState({ arrayToSort,prevChanged });
             await sleep(this.state.delay);
         }
     }
 
     async selectionSort(){
+        if(this.state.Sorted){
+            return;
+        }
+        this.setState({ sortingInProgress: true });
         let sortedArrayAnim = SelectionSort(this.state.arrayToSort);
         let arrayToSort = this.state.arrayToSort;
         let prevChanged = this.state.prevChanged;
@@ -96,6 +111,9 @@ export default class SortingVisualizer extends React.Component{
                 this.setState({prevChanged});
             }
 
+
+            this.setState({ sortingInProgress: false });
+            this.setState({Sorted : true});
             this.setState({ arrayToSort, prevChanged });
                 
             await sleep(this.state.delay);
@@ -139,6 +157,7 @@ export default class SortingVisualizer extends React.Component{
         const {arrayToSort} = this.state;
         let widthValue = 40 / this.state.numberOfItems;
         return (
+
             <div className="main-div" id="centerdiv">
                 <div className="centerdivKeepWidth" id="itemsDiv">
                     {arrayToSort.map((heightValue, idx) => (
@@ -148,12 +167,11 @@ export default class SortingVisualizer extends React.Component{
                     ))}
                 </div>
                 <div className="centerdivKeepWidth" id="buttonsDiv">
-                    <button onClick={() => this.generateNewArray()}>Generate new array</button>
-                    <button onClick={() => this.SortArray(BubbleSort)}>Bubble Sort</button>
-                    <button onClick={() => this.SortArray(InsertionSort)}>Insertion Sort</button>
-                    <button onClick={() => this.selectionSort()}>Selection Sort</button>
-                    <button onClick={() => this.SortArray(GetQuickSortAnimation)}> QuickSort</button>
-                    <button onClick = {() => this.SortArray(MergeSort)}>Merge Sort</button>
+                    <button onClick={() => this.generateNewArray()} disabled={this.state.sortingInProgress}>Generate new array</button>
+                    <button onClick={() => this.SortArray(BubbleSort)} disabled={this.state.sortingInProgress}>Bubble Sort</button>
+                    <button onClick={() => this.SortArray(InsertionSort)} disabled={this.state.sortingInProgress}>Insertion Sort</button>
+                    <button onClick={() => this.selectionSort()} disabled={this.state.sortingInProgress}>Selection Sort</button>
+                    <button onClick={() => this.SortArray(GetQuickSortAnimation)} disabled={this.state.sortingInProgress}> QuickSort</button>
                 </div>
                 <div className="flexDiv">
                     <div className="centerdivKeepWidth">
