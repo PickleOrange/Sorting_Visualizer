@@ -7,7 +7,7 @@ import GetQuickSortAnimation from '../SortingAlgorithms/QuickSort'
 
 
 const NORMAL_COLOR = '#900c3f';
-const CHANGED_COLOR = '#eb34e5';
+const CHANGED_COLOR = '#FFFF00';
 const AFTER_CHANGE_COLOR = '#90EE90';
 
 var abort = false;
@@ -153,6 +153,7 @@ export default class SortingVisualizer extends React.Component{
     }
 
 
+
     render() {
         const {arrayToSort} = this.state;
         let widthValue = 40 / this.state.numberOfItems;
@@ -168,7 +169,10 @@ export default class SortingVisualizer extends React.Component{
                 </div>
                 <div className="centerdivKeepWidth" id="buttonsDiv">
                     <button onClick={() => this.generateNewArray()} disabled={this.state.sortingInProgress}>Generate new array</button>
-                    <button onClick={() => this.SortArray(BubbleSort)} disabled={this.state.sortingInProgress}>Bubble Sort</button>
+                    <button onClick={() =>{
+                        this.SortArray(BubbleSort)
+                        this.displayBubbleSort()
+                        }} disabled={this.state.sortingInProgress}>Bubble Sort</button>
                     <button onClick={() => this.SortArray(InsertionSort)} disabled={this.state.sortingInProgress}>Insertion Sort</button>
                     <button onClick={() => this.selectionSort()} disabled={this.state.sortingInProgress}>Selection Sort</button>
                     <button onClick={() => this.SortArray(GetQuickSortAnimation)} disabled={this.state.sortingInProgress}> QuickSort</button>
@@ -176,14 +180,15 @@ export default class SortingVisualizer extends React.Component{
                 <div className="flexDiv">
                     <div className="centerdivKeepWidth">
                         <label className="numberLabel">Number of Items: </label>
-                        <input className="numberInput" type="number" min="5" max="1500" onChange={(event) => this.handleItemsInputOnChange(event)} defaultValue={this.state.numberOfItems}/>
+                        <input className="numberInput" type="range" min="20" max="200" step = "1" onChange={(event) => this.handleItemsInputOnChange(event)} defaultValue={this.state.numberOfItems}/>
                     </div>
                     <div className="centerdivKeepWidth">
                         <label className="numberLabel">Delay: </label>
-                        <input className="numberInput" type="number" min="1" max="100" onChange={(event) => this.handleDelayInputOnChange(event)} defaultValue={this.state.delay}/>
+                        <input className="numberInput" type="range" min="1" max="100" onChange={(event) => this.handleDelayInputOnChange(event)} defaultValue={this.state.delay}/>
                     </div>
                 </div>
             </ div>
+
         );
     }
 
