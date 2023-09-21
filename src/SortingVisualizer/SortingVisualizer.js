@@ -73,7 +73,7 @@ export default class SortingVisualizer extends React.Component{
             //append to list
             prevChanged.push(i,j);
 
-            if(index == sortedArrayAnim.length - 1){
+            if(index === sortedArrayAnim.length - 1){
                 prevChanged.push(arrayToSort.length + 1, arrayToSort.length + 1);
                 this.setState({prevChanged});
             }
@@ -106,7 +106,7 @@ export default class SortingVisualizer extends React.Component{
         
             prevChanged.push(i,j);
 
-            if(index == sortedArrayAnim.length - 1){
+            if(index === sortedArrayAnim.length - 1){
                 prevChanged.push(arrayToSort.length + 1, arrayToSort.length + 1);
                 this.setState({prevChanged});
             }
@@ -139,7 +139,7 @@ export default class SortingVisualizer extends React.Component{
         let prevChanged = this.state.prevChanged;
 
         if(prevChanged.includes(index)){
-            if(index == prevChanged[prevChanged.length - 1] || index == prevChanged[prevChanged.length - 2]){
+            if(index === prevChanged[prevChanged.length - 1] || index === prevChanged[prevChanged.length - 2]){
                 return CHANGED_COLOR;
             }
             else{
