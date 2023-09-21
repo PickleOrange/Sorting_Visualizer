@@ -24,13 +24,12 @@ html{
     border-radius: 15px 15px 0px 0px;
     margin: 0px 0px 2px 2px;
     transition: height 0.3s;
-    position: sticky;
     top: 80%;
+    position: sticky;
 }
 
-
 label{
-    color: rgb(235, 0, 0);
+    color: #220ba5;
     font-size: x-large;
     font-weight: 700;
 }
@@ -63,11 +62,6 @@ button:hover {
     color: #e4fd00;
 }
 
-button:disabled {
-    color: #FF0000; /* Change text color when disabled */
-    cursor: not-allowed; /* Change cursor to indicate it's not clickable */
-    /* Add other styles as needed */
-}
 div button, div input, div label{
     margin: 0px 8px;
 }

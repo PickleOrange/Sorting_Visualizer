@@ -16,7 +16,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "deploy": "gh-pages -d src public",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -37,7 +37,13 @@
       "last 1 safari version"
     ]
   },
+  "homepage":"https://PickleOrange.github.io/SortingVisualizer",
   "devDependencies": {
     "gh-pages": "^5.0.0"
-  }
+  },
+  "description": "In the project directory, you can run:",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }
