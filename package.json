@@ -1,6 +1,6 @@
 {
   "name": "sorting-visualizer",
-  "homepage":"http://PickleOrange.github.io/SortingVisualizer",
+  "homepage": "http://PickleOrange.github.io/SortingVisualizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
