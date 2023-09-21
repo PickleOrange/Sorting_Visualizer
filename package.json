@@ -17,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "predeloy": "npm run build",
-    "deploy": "gh-pages -d build",
+    "deploy": "gh-pages -d public src",
     "build": "react-scripts build",
     "eject": "react-scripts eject"
   },
